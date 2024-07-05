@@ -1,5 +1,3 @@
-
-
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
@@ -29,7 +27,6 @@ const lightbox = new SimpleLightbox('.images a', {
     captionsData: 'alt',
     captionDelay: 250,
 });
-
 let page = 1;
 let totalPages = 0;
 let searchInput = "";
@@ -52,6 +49,7 @@ async function searchImages(evt) {
     };
 
     loaderShow();
+
     try {
         const data = await getInform(searchInput, page);
         if (data.hits.length === 0) {
@@ -67,6 +65,7 @@ async function searchImages(evt) {
         totalPages = Math.ceil(data.totalHits / 15);
         if (page < totalPages) {
             btnShow();
+            // observer.observe(list.lastElementChild) // реалізація скролу
         }
         form.reset();
     } catch (error) {
@@ -79,6 +78,8 @@ async function searchImages(evt) {
         loaderShow();
     }
 }
+
+
 async function imagesMore() {
     page += 1;
     loaderShow();
@@ -86,11 +87,17 @@ async function imagesMore() {
     try {
         const data = await getInform(searchInput, page);
         list.insertAdjacentHTML("beforeend", createMarkup(data.hits));
-        
+        // const { height } = list.firstElementChild.getBoundingClientRect();// реалізація скролу
+        // window.scrollBy({
+        //     top: height * 2,
+        //     behavior: "smooth",
+        // });
         lightbox.refresh();
+        // observer.observe(list.lastElementChild);.// реалізація скролу
 
         if (page === totalPages) {
             btnShow();
+            // observer.unobserve(list.lastElementChild);// реалізація скролу
             return iziToast.info({
                 position: "topRight",
                 message: "We're sorry, but you've reached the end of search results."
