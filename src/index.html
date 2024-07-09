@@ -4,27 +4,31 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Search images</title>
+    <title>Search image</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
     <div class="container">
-      <form class="form-inline">
-        <div class="form-group">
-          <input
-            type="text"
-            placeholder="Search images.. "
-            class="form-control"
-            name="query"
-          />
-        </div>
-
-        <button type="submit" class="btn">Search</button>
+      <form class="search-form">
+        <input class="search-input" type="text" name="query" placeholder="Search images..."/>
+        <button class="search-btn" type="submit">Search</button>
       </form>
-      <span class="loader"></span>
-      <ul class="js-list images"></ul>
-      <button type="button" class="btn-load">Load more</button>
+
+      <div>
+        <ul class="gallery"></ul>
+      </div>
+
+      <button class="load-more-btn visually-hidden" type="button">Load more</button>
+
+      <div class="loader visually-hidden">
+        <p class="loading-text">loading..</p>
+      </div>
     </div>
-    <script type="module" src="./main.js"></script>
+
+
+    <script type="module" src="./main.js" defer></script>
   </body>
 </html>
